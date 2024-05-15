@@ -1,7 +1,8 @@
+import 'package:trash_trackr/Main%20Pages/report.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:TrashTrackr/Main Pages/settings.dart';
+import 'package:trash_trackr/Main Pages/settings.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -20,16 +21,25 @@ class _MainPageState extends State<MainPage> {
     _mapController.move(_mapController.center, _mapController.zoom - 0.1);
   }
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-    if (index == 0) {
-      Navigator.pushReplacementNamed(context, '/MainPage');
-    } else if (index == 1) {
-      Navigator.pushReplacementNamed(context, '/ReportPage');
-    }
+void _onItemTapped(int index) {
+  setState(() {
+    _currentIndex = index;
+  });
+  if (index == 0) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => MainPage()));
+  } else if (index == 1) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => FractionallySizedBox(
+        heightFactor: 0.75,
+        child: ReportsPage(),
+      ),
+    );
   }
+}
 
   @override
   Widget build(BuildContext context) {

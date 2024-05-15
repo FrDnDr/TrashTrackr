@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'SplashScreen/splashscreen.dart';
-import 'package:TrashTrackr/Main Pages/mainpage.dart';
+import 'SplashScreen/splashscreen.dart';
+import 'package:trash_trackr/Main Pages/mainpage.dart';
 void main() {
   runApp(const MyApp());
 }
