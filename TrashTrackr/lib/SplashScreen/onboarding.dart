@@ -9,12 +9,12 @@ import 'package:flutter/material.dart';
 import '../LoginandRegistration/login.dart'; 
 import '../LoginandRegistration/register.dart';
 
-class Splashwloginregis extends StatefulWidget {
+class Onboarding extends StatefulWidget {
   @override
-  _SplashwloginregisState createState() => _SplashwloginregisState();
+  _OnboardingState createState() => _OnboardingState();
 }
 
-class _SplashwloginregisState extends State<Splashwloginregis> {
+class _OnboardingState extends State<Onboarding> {
 
   // Function to handle the login process
   void _handleLogin() {
