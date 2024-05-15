@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:TrashTrackr/Main Pages/settings.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -9,26 +10,42 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   final MapController _mapController = MapController();
-  bool _isZoomingIn = false;
-  bool _isZoomingOut = false;
+  int _currentIndex = 0;
 
   void _zoomIn() {
-    if (_isZoomingIn) {
-      _mapController.move(_mapController.center, _mapController.zoom + 0.1);
-      Future.delayed(Duration(milliseconds: 100), _zoomIn);
-    }
+    _mapController.move(_mapController.center, _mapController.zoom + 0.1);
   }
 
   void _zoomOut() {
-    if (_isZoomingOut) {
-      _mapController.move(_mapController.center, _mapController.zoom - 0.1);
-      Future.delayed(Duration(milliseconds: 100), _zoomOut);
+    _mapController.move(_mapController.center, _mapController.zoom - 0.1);
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+    if (index == 0) {
+      Navigator.pushReplacementNamed(context, '/MainPage');
+    } else if (index == 1) {
+      Navigator.pushReplacementNamed(context, '/ReportPage');
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.settings),
+          onPressed: () {
+            // Navigate to the settings page
+            showModalBottomSheet(
+              context: context,
+              builder: (context) => Settings(),
+            );
+          },
+        ),
+      ),
       body: Stack(
         children: [
           FlutterMap(
@@ -45,42 +62,36 @@ class _MainPageState extends State<MainPage> {
             ],
           ),
           Positioned(
-            top: 10.0,
+            bottom: 10.0,
             right: 10.0,
             child: Column(
               children: <Widget>[
-                GestureDetector(
-                  child: Icon(Icons.zoom_in),
-                  onLongPress: () {
-                    setState(() {
-                      _isZoomingIn = true;
-                    });
-                    _zoomIn();
-                  },
-                  onLongPressEnd: (details) {
-                    setState(() {
-                      _isZoomingIn = false;
-                    });
-                  },
+                IconButton(
+                  icon: Icon(Icons.add),
+                  onPressed: _zoomIn,
                 ),
-                GestureDetector(
-                  child: Icon(Icons.zoom_out),
-                  onLongPress: () {
-                    setState(() {
-                      _isZoomingOut = true;
-                    });
-                    _zoomOut();
-                  },
-                  onLongPressEnd: (details) {
-                    setState(() {
-                      _isZoomingOut = false;
-                    });
-                  },
+                IconButton(
+                  icon: Icon(Icons.remove),
+                  onPressed: _zoomOut,
                 ),
               ],
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.report),
+            label: 'Report',
+          ),
+        ],
+        currentIndex: _currentIndex,
+        onTap: _onItemTapped,
       ),
     );
   }
