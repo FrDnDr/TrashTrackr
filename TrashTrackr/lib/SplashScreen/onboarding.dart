@@ -6,9 +6,8 @@ Feature: [TRKR-106] Welcome Screen
 Description: Welcome Page for the Trash Trackr
 */
 import 'package:flutter/material.dart';
-
-import '../Login and Registration/login.dart'; 
-import '../Login and Registration/register.dart';
+import '../LoginandRegistration/login.dart'; 
+import '../LoginandRegistration/register.dart';
 
 class Splashwloginregis extends StatefulWidget {
   @override

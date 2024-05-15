@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:splashscreen/Login and Registration/login.dart';
+import '../LoginandRegistration/login.dart';
 class RegisterPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
