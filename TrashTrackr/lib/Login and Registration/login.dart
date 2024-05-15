@@ -9,6 +9,8 @@ Description: Login Page for Trash Trackr
 // Importing necessary Flutter material package.
 import 'package:flutter/material.dart';
 import 'package:splashscreen/Login and Registration/register.dart';
+import 'package:splashscreen/Main%20Pages/mainpage.dart';
+
 
 // LoginPage is a StatefulWidget that creates an instance of _LoginPageState.
 class LoginPage extends StatefulWidget {
@@ -52,6 +54,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Text('OK'),
             onPressed: () {
               Navigator.of(context).pop();
+              Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage()));
             },
           ),
         ],
