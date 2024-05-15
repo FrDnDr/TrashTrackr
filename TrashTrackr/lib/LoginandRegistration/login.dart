@@ -8,7 +8,7 @@ Description: Login Page for Trash Trackr
 
 // Importing necessary Flutter material package.
 import 'package:flutter/material.dart';
-import 'package:TrashTrackr/Main Pages/mainpage.dart';
+import '../Main Pages/mainpage.dart';
 import '../LoginandRegistration/register.dart'; 
 
 
