@@ -8,6 +8,7 @@ Description: Login Page for Trash Trackr
 
 // Importing necessary Flutter material package.
 import 'package:flutter/material.dart';
+import 'package:splashscreen/Login and Registration/register.dart';
 
 // LoginPage is a StatefulWidget that creates an instance of _LoginPageState.
 class LoginPage extends StatefulWidget {
@@ -59,53 +60,72 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   // Building the UI for the login page.
-  @override
-  Widget build(BuildContext context) {
-    // If loading, show CircularProgressIndicator, else show the login form.
-    return Scaffold(
-      body: _isLoading
-          ? Center(child: CircularProgressIndicator())
-          : Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  // Text field for phone number/email input.
-                  TextFormField(
-                    controller: _phoneEmailController,
-                    decoration: InputDecoration(
-                      labelText: 'Phone Number/Email',
-                      prefixIcon: Icon(Icons.person),
+  // Building the UI for the login page.
+@override
+Widget build(BuildContext context) {
+  // If loading, show CircularProgressIndicator, else show the login form.
+  return Scaffold(
+    body: _isLoading
+        ? Center(child: CircularProgressIndicator())
+        : Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                // Text field for phone number/email input.
+                TextFormField(
+                  controller: _phoneEmailController,
+                  decoration: InputDecoration(
+                    labelText: 'Phone Number/Email',
+                    prefixIcon: Icon(Icons.person),
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                SizedBox(height: 16.0),
+                // Text field for password input.
+                TextFormField(
+                  controller: _passwordController,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    prefixIcon: Icon(Icons.lock),
+                  ),
+                  obscureText: true,
+                ),
+                SizedBox(height: 24.0),
+                // Login button that triggers the _login function.
+                ElevatedButton(
+                  onPressed: _login,
+                  child: Text('Login'),
+                ),
+                // Button for users who forgot their password.
+                TextButton(
+                  onPressed: () {
+                    // Placeholder for forgot password feature implementation.
+                  },
+                  child: Text('Forgot Password?'),
+                ),
+                SizedBox(height: 24.0),
+                // New Here? Register section.
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text('New Here? '),
+                    TextButton(
+                      onPressed: () {
+                        // Navigate to the RegisterPage.
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => RegisterPage()),
+                        );
+                      },
+                      child: Text('Register'),
                     ),
-                    keyboardType: TextInputType.emailAddress,
-                  ),
-                  SizedBox(height: 16.0),
-                  // Text field for password input.
-                  TextFormField(
-                    controller: _passwordController,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      prefixIcon: Icon(Icons.lock),
-                    ),
-                    obscureText: true,
-                  ),
-                  SizedBox(height: 24.0),
-                  // Login button that triggers the _login function.
-                  ElevatedButton(
-                    onPressed: _login,
-                    child: Text('Login'),
-                  ),
-                  // Button for users who forgot their password.
-                  TextButton(
-                    onPressed: () {
-                      // Placeholder for forgot password feature implementation.
-                    },
-                    child: Text('Forgot Password?'),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+              ],
             ),
-    );
-  }
+          ),
+  );
+}
 }
 

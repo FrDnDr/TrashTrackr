@@ -1,12 +1,5 @@
-/*
-Authored by: Francis Daniel B. Dreu
-Company: Team Name
-Project: TrashTrackr
-Feature: [TRKR-101] Registration Screen
-Description: Sign Up Page for Trash Trackr
-*/
 import 'package:flutter/material.dart';
-
+import 'package:splashscreen/Login and Registration/login.dart';
 class RegisterPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
@@ -40,7 +33,7 @@ class _RegisterPageState extends State<RegisterPage> {
           TextButton(
             child: Text('OK'),
             onPressed: () {
-              Navigator.of(context).pop();
+              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
             },
           ),
         ],

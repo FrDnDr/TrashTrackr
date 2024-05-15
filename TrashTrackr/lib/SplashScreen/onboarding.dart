@@ -6,9 +6,7 @@ Feature: [TRKR-106] Welcome Screen
 Description: Welcome Page for the Trash Trackr
 */
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'package:splashscreen/main.dart';
-import 'onboarding.dart'; 
+
 import '../Login and Registration/login.dart'; 
 import '../Login and Registration/register.dart';
 
