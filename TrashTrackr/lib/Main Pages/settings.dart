@@ -4,7 +4,7 @@ import 'package:trash_trackr/Main%20Pages/Settings/privacy.dart';
 import 'package:trash_trackr/Main%20Pages/Settings/account.dart';
 import 'package:trash_trackr/Main%20Pages/Settings/analytics.dart';
 import 'package:trash_trackr/Main%20Pages/Settings/support.dart';
-import 'package:trash_trackr/Main%20Pages/Settings/notifications.dart';
+import 'package:trash_trackr/Notifications/notifications.dart';
 class Settings extends StatefulWidget {
   @override
   _SettingsState createState() => _SettingsState();
