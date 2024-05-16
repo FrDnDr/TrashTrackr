@@ -39,6 +39,7 @@ dependencies:
   latlong2: ^0.9.1
   flutter_local_notifications: ^17.1.2
   google_fonts: ^6.2.1
+  url_launcher: ^6.2.6
 
 dev_dependencies:
   flutter_test:
