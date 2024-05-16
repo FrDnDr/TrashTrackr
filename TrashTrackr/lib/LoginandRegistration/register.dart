@@ -93,7 +93,7 @@ Widget build(BuildContext context) {
                   SizedBox(height: 24.0),
                   ElevatedButton(
                     onPressed: _register,
-                    child: Text('Register'),
+                    child: Text('Register', style: TextStyle(color: Colors.black)),
                   ),
                 ],
               ),
