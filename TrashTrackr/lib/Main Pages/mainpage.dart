@@ -21,25 +21,21 @@ class _MainPageState extends State<MainPage> {
     _mapController.move(_mapController.center, _mapController.zoom - 0.1);
   }
 
-void _onItemTapped(int index) {
-  setState(() {
-    _currentIndex = index;
-  });
-  if (index == 0) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => MainPage()));
-  } else if (index == 1) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      builder: (context) => FractionallySizedBox(
-        heightFactor: 0.75,
-        child: ReportsPage(),
-      ),
-    );
+  void _onItemTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+    if (index == 1) {
+      showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        builder: (context) => FractionallySizedBox(
+          heightFactor: 0.75,
+          child: ReportsPage(),
+        ),
+      );
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
