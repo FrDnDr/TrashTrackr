@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 /*
 Authored by: Francis Daniel B. Dreu
 Company: Team Name
@@ -9,53 +11,47 @@ Description: Login Page for Trash Trackr
 // Importing necessary Flutter material package.
 import 'package:flutter/material.dart';
 import '../Main Pages/mainpage.dart';
-import '../LoginandRegistration/register.dart'; 
-
-
+import '../LoginandRegistration/register.dart';
 
 // LoginPage is a StatefulWidget that creates an instance of _LoginPageState.
 class LoginPage extends StatefulWidget {
-  @override
+  const LoginPage({super.key});
+
+  @override 
   _LoginPageState createState() => _LoginPageState();
 }
 
-// _LoginPageState is the state for LoginPage that manages the login logic and UI.
 class _LoginPageState extends State<LoginPage> {
-  // TextEditingControllers to control the text fields for phone/email and password.
-  final TextEditingController _phoneEmailController = TextEditingController();
+  final TextEditingController __emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  
-  // Boolean value to track if the app is currently loading or not.
-  bool _isLoading = false;
 
-  // Asynchronous function to handle user login.
   void _login() async {
-    // Setting loading to true to show a loading indicator.
     setState(() {
-      _isLoading = true;
+      // Set loading state
     });
 
-    // Simulating a login process with a 2-second delay.
+    // Simulate login process
     await Future.delayed(Duration(seconds: 2));
 
-    // Setting loading to false to hide the loading indicator.
     setState(() {
-      _isLoading = false;
+      // Reset loading state
     });
 
-    // Showing a confirmation dialog upon successful login.
+    // Show confirmation dialog
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: Text('Login Successful'),
         content: Text('You have successfully logged in.'),
         actions: <Widget>[
-          // Button to close the dialog.
           TextButton(
             child: Text('OK'),
             onPressed: () {
               Navigator.of(context).pop();
-              Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MainPage()),
+              );
             },
           ),
         ],
@@ -63,73 +59,100 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  // Building the UI for the login page.
-  // Building the UI for the login page.
-@override
-Widget build(BuildContext context) {
-  // If loading, show CircularProgressIndicator, else show the login form.
-  return Scaffold(
-    body: _isLoading
-        ? Center(child: CircularProgressIndicator())
-        : Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                // Text field for phone number/email input.
-                TextFormField(
-                  controller: _phoneEmailController,
-                  decoration: InputDecoration(
-                    labelText: 'Phone Number/Email',
-                    prefixIcon: Icon(Icons.person),
-                  ),
-                  keyboardType: TextInputType.emailAddress,
-                ),
-                SizedBox(height: 16.0),
-                // Text field for password input.
-                TextFormField(
-                  controller: _passwordController,
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    prefixIcon: Icon(Icons.lock),
-                  ),
-                  obscureText: true,
-                ),
-                SizedBox(height: 24.0),
-                // Login button that triggers the _login function.
-                ElevatedButton(
-                  onPressed: _login,
-                  child: Text('Login'),
-                ),
-                // Button for users who forgot their password.
-                TextButton(
-                  onPressed: () {
-                    // Placeholder for forgot password feature implementation.
-                  },
-                  child: Text('Forgot Password?'),
-                ),
-                SizedBox(height: 24.0),
-                // New Here? Register section.
-                Row(
+  void _forgotPassword() {
+    // Implement forgot password functionality
+    print('Forgot Password');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        color: Color.fromARGB(223, 160, 237, 132),
+        child: Column(
+          children: [
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.all(16.0),
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text('New Here? '),
+                  children: [
+                    Image.asset(
+                      'assets/logologin.png',
+                      height: 100,
+                    ),
+                    SizedBox(height: 32),
+                    TextField(
+                      controller: __emailController,
+                      decoration: InputDecoration(
+                        hintText: 'Email Address',
+                        hintStyle: TextStyle(color: const Color.fromARGB(137, 0, 0, 0)),
+                        prefixIcon: Icon(Icons.email, color: const Color.fromARGB(255, 0, 0, 0)),
+                        filled: true,
+                        fillColor: Colors.white24,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                      keyboardType: TextInputType.emailAddress,
+                    ),
+                    SizedBox(height: 16),
+                    TextField(
+                      controller: _passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        hintText: 'Password',
+                        hintStyle: TextStyle(color: const Color.fromARGB(137, 0, 0, 0)),
+                        prefixIcon: Icon(Icons.lock, color: const Color.fromARGB(255, 0, 0, 0)),
+                        filled: true,
+                        fillColor: Colors.white24,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    TextButton(
+                      onPressed: _forgotPassword,
+                      child: const Text(
+                        'Forgot Password?',
+                          style:TextStyle(color: Colors.blue),
+                      ),
+                    ),
+                    SizedBox(height: 32),
+                    ElevatedButton(
+                      onPressed: _login,
+                      child: Text('Log in'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFF4CAF50),
+                        padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 16),
                     TextButton(
                       onPressed: () {
-                        // Navigate to the RegisterPage.
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => RegisterPage()),
                         );
                       },
-                      child: Text('Register'),
+                      child: Text(
+                        'Register',
+                        style: TextStyle(color: Colors.green),
+                      ),
                     ),
                   ],
                 ),
-              ],
+              ),
             ),
-          ),
-  );
+          ],
+        ),
+      ),
+    );
+  }
 }
-}
-
