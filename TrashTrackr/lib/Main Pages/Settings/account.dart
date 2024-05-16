@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Account extends StatefulWidget {
+  @override
   _AccountState createState() => _AccountState();
 }
 
@@ -10,46 +11,71 @@ class _AccountState extends State<Account> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.close),
+          icon: Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text('Account'),
+        centerTitle: true,
+        backgroundColor: Colors.green[700],
       ),
-      body: ListView(
-        children: <Widget>[
-          UserAccountsDrawerHeader(
-            accountName: Text('Juan De la Cruz'),
-            accountEmail: Text('juandelacruz@example.com'),
-            currentAccountPicture: CircleAvatar(
-              backgroundColor: Colors.white,
-              child: Text(
-                'J',
-                style: TextStyle(fontSize: 40.0),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: CircleAvatar(
+                  radius: 50,
+                  backgroundColor: Colors.grey[300],
+                  child: Icon(
+                    Icons.person,
+                    size: 60,
+                    color: Color.fromARGB(223, 160, 237, 132),
+                  ),
+                ),
               ),
-            ),
+              SizedBox(height: 16),
+              Center(
+                child: Text(
+                  'Juan De la Cruz',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              SizedBox(height: 8),
+              Center(
+                child: Text(
+                  'juandelacruz@example.com',
+                  style: TextStyle(
+                    color: Colors.grey[600],
+                  ),
+                ),
+              ),
+              
+              ListTile(
+                leading: Icon(Icons.email, color: Color.fromARGB(223, 160, 237, 132)),
+                title: Text('Change Email Address'),
+                trailing: Icon(Icons.arrow_forward_ios, color: Colors.grey),
+                onTap: () {
+                  // Navigate to change email address page
+                },
+              ),
+              Divider(),
+              ListTile(
+                leading: Icon(Icons.lock, color: Color.fromARGB(223, 160, 237, 132)),
+                title: Text('Change Password'),
+                trailing: Icon(Icons.arrow_forward_ios, color: Colors.grey),
+                onTap: () {
+                  // Navigate to change password page
+                },
+              ),
+              Divider(),
+            ],
           ),
-          ListTile(
-            leading: Icon(Icons.phone),
-            title: Text('Change Phone Number'),
-            onTap: () {
-              // Navigate to change phone number page
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.email),
-            title: Text('Change Email Address'),
-            onTap: () {
-              // Navigate to change email address page
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.lock),
-            title: Text('Change Password'),
-            onTap: () {
-              // Navigate to change password page
-            },
-          ),
-        ],
+        ),
       ),
     );
   }
