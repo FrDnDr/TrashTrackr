@@ -1,4 +1,4 @@
-# splashscreen
+# Trash Trackr
 
 A new Flutter project.
 
